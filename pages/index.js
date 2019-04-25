@@ -15,44 +15,16 @@ import {
   ListItem,
   IconChevronRight
 } from 'sancho'
+import Layout from '../components/layout'
 
 const Index = props => {
   return (
-    <>
-      <Global
-        styles={{
-          body: {
-            padding: 0,
-            margin: 0
-          }
-        }}
-      />
-      <Toolbar
-        style={{
-          backgroundColor: 'rgb(52, 58, 64)'
-        }}
-      >
-        <DarkMode>
-          <Text varient="h5">Demo Blog with WP REST API</Text>
-        </DarkMode>
-      </Toolbar>
-      <DarkMode>
-        <Tabs
-          css={css`
-            background-color: rgb(52, 58, 64);
-          `}
-        >
-          <Tab>All</Tab>
-          <Tab>Develop</Tab>
-          <Tab>Design</Tab>
-          <Tab>Event</Tab>
-        </Tabs>
-      </DarkMode>
+    <Layout tab={props.url.query.tab}>
       <List>
         {props.posts.map(post => {
-          console.log(post.id)
+          // console.log(post)
           return (
-            <Link href={`/post?id=${post.id}`} key={post.id}>
+            <Link href={`/post?id=${post.id}`} key={post.id} passHref>
               <ListItem
                 wrap={false}
                 primary={post.title.rendered}
@@ -64,7 +36,7 @@ const Index = props => {
           )
         })}
       </List>
-    </>
+    </Layout>
   )
 }
 
