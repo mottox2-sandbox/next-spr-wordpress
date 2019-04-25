@@ -16,10 +16,13 @@ const Index = props => {
   )
 }
 
-Index.getInitialProps = async () => {
-  const res = await axios.get(`${process.env.WP_HOST}/wp-json/wp/v2/posts`)
+Index.getInitialProps = async ({ req, res }) => {
+  if (res) {
+    res.setHeader('Cache-Control', 'max-age=1, stale-while-revalidate=10')
+  }
+  const { data } = await axios.get(`${process.env.WP_HOST}/wp-json/wp/v2/posts`)
   return {
-    posts: res.data
+    posts: data
   }
 }
 
