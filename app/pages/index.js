@@ -18,6 +18,7 @@ import {
 import Layout from '../components/layout'
 
 const Index = props => {
+  console.log(props)
   return (
     <Layout tab={props.url.query.tab}>
       <List>
