@@ -119,11 +119,12 @@ const Post = props => {
 }
 
 Post.getInitialProps = async props => {
-  // console.log(Object.keys(props))
   if (props.res) {
-    props.res.setHeader('Cache-Control', 'max-age=1, stale-while-revalidate=10')
+    props.res.setHeader('Cache-Control', 'public, s-maxage=30, stale-while-revalidate')
   }
-  const { data } = await axios.get(`${process.env.WP_HOST}/wp-json/wp/v2/posts/${props.query.id}`)
+  const { data } = await axios.get(
+    `${process.env.WP_HOST}/wp-json/wp/v2/posts/${props.query.id}`
+  )
   return {
     post: data
   }

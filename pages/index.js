@@ -42,7 +42,7 @@ const Index = props => {
 
 Index.getInitialProps = async ({ req, res }) => {
   if (res) {
-    res.setHeader('Cache-Control', 'max-age=1, stale-while-revalidate=10')
+    res.setHeader('Cache-Control', 'public, s-maxage=120, stale-while-revalidate')
   }
   const { data } = await axios.get(`${process.env.WP_HOST}/wp-json/wp/v2/posts`)
   return {
