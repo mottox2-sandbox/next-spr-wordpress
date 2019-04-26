@@ -16,11 +16,11 @@ import {
   IconChevronRight
 } from 'sancho'
 import Layout from '../components/layout'
+import { withRouter } from 'next/router'
 
 const Index = props => {
-  console.log(props)
   return (
-    <Layout tab={props.url.query.tab}>
+    <Layout tab={props.router.query.tab}>
       <List>
         {props.posts.map(post => {
           // console.log(post)
@@ -51,4 +51,4 @@ Index.getInitialProps = async ({ req, res }) => {
   }
 }
 
-export default Index
+export default withRouter(Index)
