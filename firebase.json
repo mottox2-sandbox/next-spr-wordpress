@@ -7,14 +7,13 @@
       "**/node_modules/**"
     ],
     "rewrites": [{
-        "source": "/post",
-        "function": "post"
-      },
+      "source": "/post",
+      "function": "post"
+    },
       {
-        "source": "index",
-        "function": "index"
-      }
-    ]
+      "source": "/",
+      "function": "index"
+    }]
   },
   "functions": {
     "source": "dist/functions"

@@ -1,15 +1,7 @@
-const path = require('path')
-const functions = require('firebase-functions')
-const next = require('next')
+const onRequest = require('firebase-functions').https.onRequest
 
-var dev = process.env.NODE_ENV !== 'production'
-var app = next({
-  dev,
-  conf: { distDir: `${path.relative(process.cwd(), __dirname)}/next` }
-})
-var handle = app.getRequestHandler()
+const index = require('./next/serverless/pages/index')
+const post = require('./next/serverless/pages/post')
 
-exports.next = functions.https.onRequest((req, res) => {
-  console.log('File: ' + req.originalUrl) // log the page.js file that is being requested
-  return app.prepare().then(() => handle(req, res))
-})
+exports.index = onRequest((req, res) => index.render(req, res))
+exports.post = onRequest((req, res) => post.render(req, res))
